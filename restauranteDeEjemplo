@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurante Premium - Alta Gama</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+<style>
+body { font-family:'Arial', sans-serif; margin:0; padding:0; background:#fff; color:#333;}
+header { background:#ff6347; color:white; text-align:center; padding:25px 0; box-shadow:0 4px 6px rgba(0,0,0,0.2);}
+nav { display:flex; justify-content:center; gap:30px; margin:20px 0;}
+nav a { text-decoration:none; color:#ff6347; font-weight:bold; transition:0.3s;}
+nav a:hover { color:#e5533d; }
+section { padding:40px 20px; max-width:1000px; margin:auto;}
+h2 { color:#ff6347; margin-bottom:20px;}
+.menu-item { border-bottom:1px solid #ddd; padding:15px 0; transition:0.3s;}
+.menu-item:hover { background:#fff0f0; }
+.menu-item h3 { margin:0; }
+.menu-item p { margin:5px 0 0 0; }
+form { max-width:500px; margin:auto; display:flex; flex-direction:column; gap:10px;}
+input, textarea, button { padding:12px; border:1px solid #ccc; border-radius:6px;}
+button { background:#ff6347; color:white; border:none; cursor:pointer; font-weight:bold; transition:0.3s;}
+button:hover { background:#e5533d;}
+/* Galería slider */
+.slider { max-width:900px; margin:auto; }
+.slider img { width:100%; border-radius:10px; cursor:pointer; }
+/* Lightbox */
+#lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;}
+#lightbox img { max-width:90%; max-height:80%; border-radius:10px;}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Restaurante Premium</h1>
+</header>
+
+<nav>
+    <a href="#menu">Menú</a>
+    <a href="#reservas">Reservas</a>
+    <a href="#galeria">Galería</a>
+</nav>
+
+<section id="menu">
+    <h2>Menú Digital</h2>
+    <div class="menu-item"><h3>Pizza Margarita</h3><p>Tomate, mozzarella, albahaca fresca - $150 MXN</p></div>
+    <div class="menu-item"><h3>Pasta Alfredo</h3><p>Pasta con salsa cremosa de queso y pollo - $180 MXN</p></div>
+    <div class="menu-item"><h3>Ensalada César</h3><p>Lechuga, crutones, pollo y aderezo César - $120 MXN</p></div>
+</section>
+
+<section id="reservas">
+    <h2>Reservas en Línea</h2>
+    <form id="reservaForm" action="TU_GOOGLE_FORM_URL" method="POST" target="_blank">
+        <input type="text" name="entry.XXXX" placeholder="Tu nombre" required>
+        <input type="email" name="entry.XXXX" placeholder="Correo electrónico" required>
+        <input type="tel" name="entry.XXXX" placeholder="Teléfono" required>
+        <input type="date" name="entry.XXXX" required>
+        <input type="time" name="entry.XXXX" required>
+        <input type="number" name="entry.XXXX" placeholder="Número de personas" required min="1">
+        <button type="submit">Reservar</button>
+    </form>
+    <p id="reservaMensaje"></p>
+</section>
+
+<section id="galeria">
+    <h2>Galería de Fotos</h2>
+    <div class="slider">
+        <img src="https://source.unsplash.com/900x500/?pizza" alt="Pizza">
+        <img src="https://source.unsplash.com/900x500/?pasta" alt="Pasta">
+        <img src="https://source.unsplash.com/900x500/?restaurant" alt="Restaurante">
+        <img src="https://source.unsplash.com/900x500/?salad" alt="Ensalada">
+    </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox"><img src="" alt="Foto"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+$(document).ready(function(){
+    // Slider de galería
+    $('.slider').slick({
+        dots:true,
+        arrows:true,
+        infinite:true,
+        speed:500,
+        autoplay:true,
+        autoplaySpeed:3000
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = lightbox.querySelector('img');
+    $('.slider img').click(function(){
+        lbImage.src = $(this).attr('src');
+        lightbox.style.display = 'flex';
+    });
+    lightbox.addEventListener('click', ()=> lightbox.style.display = 'none');
+});
+</script>
+
+</body>
+</html>
